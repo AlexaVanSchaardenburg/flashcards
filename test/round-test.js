@@ -176,8 +176,10 @@ describe('checks endRound Functionality', function(){
       takeTurn('iteration method', round)
       takeTurn('sort()', round)
 
-      const endOfRoundMessage = endRound(round)
+      // const endOfRoundMessage = 
+      const message = endRound(round)
 
-      expect(endOfRoundMessage).to.equal('**ROUND OVER** You answered 67% of the questions correctly!')
+      expect(message).to.equal(`**ROUND OVER** You answered 67% of the questions correctly!`)
+
     });
 });
