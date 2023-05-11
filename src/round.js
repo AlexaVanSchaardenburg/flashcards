@@ -21,9 +21,7 @@ const takeTurn = (guess, round) => {
 };
 
 const calculatePercentCorrect = (round) => {
-
     const percentCorrect = Math.round(100*(1-(round.incorrectGuesses.length/round.turns)))
-
     return `${percentCorrect}%`
 };
 

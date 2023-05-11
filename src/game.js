@@ -7,13 +7,7 @@ const { } = require('../src/turns');
 const { createRound } = require('../src/round');
 
 function start(){
-  // let cards = []
-  // for (let i=0; i<prototypeQuestions.length; i++){
-  //   let card = createCard(prototypeQuestions[i].id, prototypeQuestions[i].question, prototypeQuestions[i].answers, prototypeQuestions[i].correctAnswer)
-  //   cards.push(card)
-  // }
-  let cards = prototypeQuestions.map(question => createCard(question.id, question.question, question.answers, question.correctAnswer))
-
+  const cards = prototypeQuestions.map(question => createCard(question.id, question.question, question.answers, question.correctAnswer))
   const deck = createDeck(cards)
   const round = createRound(deck)
   printMessage(deck)
