@@ -17,19 +17,19 @@ const takeTurn = (guess, round) => {
     } 
     round.turns++
     round.currentCard = round.deck[round.turns]
-    return `You guessed ${result}`
+    return `${result}`
 };
 
 const calculatePercentCorrect = (round) => {
-
     const percentCorrect = Math.round(100*(1-(round.incorrectGuesses.length/round.turns)))
-
     return `${percentCorrect}%`
 };
 
 const endRound = (round) => {
     const percentCorrect = calculatePercentCorrect(round);
-    return `**ROUND OVER** You answered ${percentCorrect} of the questions correctly!`
+    const message = `**ROUND OVER** You answered ${percentCorrect} of the questions correctly!`
+    console.log(message)
+    return message
 };
 
 module.exports ={

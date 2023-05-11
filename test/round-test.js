@@ -5,26 +5,23 @@ const { sampleData } = require('../src/sample-data');
 const { createCard } = require('../src/card');
 const { createDeck } = require('../src/deck');
 
+let cards = []
+
+beforeEach(function(){
+  cards = sampleData.map(card => createCard(card.id, card.question, card.answers, card.correctAnswer))
+});
+
+
 describe('checks that the deck, currentCard, incorrectGuesses, and Turn variables are all available inside the round', function(){
     it('should have a deck that holds cards', function(){
-        let cards = []
-        for (let i=0; i<3; i++){
-          const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-          cards.push(card)
-        }
         const deck = createDeck(cards)
         const round = createRound(deck)
 
-        expect(round.deck).to.deep.equal([sampleData[0], sampleData[1], sampleData[2]])
+        expect(round.deck).to.deep.equal([sampleData[0], sampleData[1], sampleData[2], sampleData[3], sampleData[4], sampleData[5]])
 
 
     });
     it('should have a current card that is the first card in the deck', function(){
-        let cards = []
-        for (let i=0; i<3; i++){
-          const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-          cards.push(card)
-        }
         const deck = createDeck(cards)
         const round = createRound(deck)
 
@@ -32,22 +29,12 @@ describe('checks that the deck, currentCard, incorrectGuesses, and Turn variable
 
     });
     it('should have a turns tracker starting at 0', function(){
-        let cards = []
-        for (let i=0; i<3; i++){
-          const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-          cards.push(card)
-        }
         const deck = createDeck(cards)
         const round = createRound(deck)
 
         expect(round.turns).to.equal(0)
     });
     it('should have an empty array to store cards guess wrong', function(){
-        let cards = []
-        for (let i=0; i<3; i++){
-          const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-          cards.push(card)
-        }
         const deck = createDeck(cards)
         const round = createRound(deck)
 
@@ -56,11 +43,6 @@ describe('checks that the deck, currentCard, incorrectGuesses, and Turn variable
 });
 describe('Checks takeTurn functionality', function(){
     it('should update the turn count each time a guess is made', function(){
-        let cards = []
-        for (let i=0; i<6; i++){
-          const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-          cards.push(card)
-        }
         const deck = createDeck(cards)
         const round = createRound(deck)
 
@@ -72,11 +54,6 @@ describe('Checks takeTurn functionality', function(){
         expect(round.turns).to.equal(3)
     });
     it('should change the currentCard to the next card in the deck', function(){
-        let cards = []
-        for (let i=0; i<6; i++){
-          const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-          cards.push(card)
-        }
         const deck = createDeck(cards)
         const round = createRound(deck)
 
@@ -88,11 +65,6 @@ describe('Checks takeTurn functionality', function(){
         expect(round.currentCard).to.deep.equal(sampleData[3])
     });
     it('guess should be evaluated, if the guess is incorrect the card is stored in the incrrectGuesses array', function(){
-      let cards = []
-      for (let i=0; i<6; i++){
-        const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-        cards.push(card)
-      }
       const deck = createDeck(cards)
       const round = createRound(deck)
 
@@ -105,30 +77,21 @@ describe('Checks takeTurn functionality', function(){
 
     });
     it('user should recieve feedback on result of guess', function(){
-      let cards = []
-      for (let i=0; i<6; i++){
-        const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-        cards.push(card)
-      }
       const deck = createDeck(cards)
       const round = createRound(deck)
 
       let result = takeTurn('method', round)
-      expect(result).to.equal('You guessed incorrect!')
+      expect(result).to.equal('incorrect!')
 
       result = takeTurn('array', round)
-      expect(result).to.equal('You guessed correct!')
+      expect(result).to.equal('correct!')
     });
 });
 describe('checks calculatePercent functionality', function(){
     it('should calculate the percent of correct guesses made in a round', function(){
-      let cards = []
-      for (let i=0; i<6; i++){
-        const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-        cards.push(card)
-      }
       const deck = createDeck(cards)
       const round = createRound(deck)
+
       takeTurn('wrong', round)
       takeTurn('array', round)
       takeTurn('wrong', round)
@@ -141,11 +104,6 @@ describe('checks calculatePercent functionality', function(){
       expect(percentCorrect).to.equal('50%')
     });
     it('should calculate the percent of correct guesses made in a round with a different number of incorrect guesses', function(){
-      let cards = []
-      for (let i=0; i<6; i++){
-        const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-        cards.push(card)
-      }
       const deck = createDeck(cards)
       const round = createRound(deck)
       takeTurn('wrong', round)
@@ -162,11 +120,6 @@ describe('checks calculatePercent functionality', function(){
 });
 describe('checks endRound Functionality', function(){
     it('should return an end of round message and the precent of correct guesses', function(){
-      let cards = []
-      for (let i=0; i<6; i++){
-        const card = createCard(sampleData[i].id, sampleData[i].question, sampleData[i].answers, sampleData[i].correctAnswer)
-        cards.push(card)
-      }
       const deck = createDeck(cards)
       const round = createRound(deck)
       takeTurn('object', round)
@@ -176,8 +129,9 @@ describe('checks endRound Functionality', function(){
       takeTurn('iteration method', round)
       takeTurn('sort()', round)
 
-      const endOfRoundMessage = endRound(round)
+      const message = endRound(round)
 
-      expect(endOfRoundMessage).to.equal('**ROUND OVER** You answered 67% of the questions correctly!')
+      expect(message).to.equal(`**ROUND OVER** You answered 67% of the questions correctly!`)
+
     });
 });
