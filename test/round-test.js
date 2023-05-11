@@ -114,10 +114,10 @@ describe('Checks takeTurn functionality', function(){
       const round = createRound(deck)
 
       let result = takeTurn('method', round)
-      expect(result).to.equal('You guessed incorrect!')
+      expect(result).to.equal('incorrect!')
 
       result = takeTurn('array', round)
-      expect(result).to.equal('You guessed correct!')
+      expect(result).to.equal('correct!')
     });
 });
 describe('checks calculatePercent functionality', function(){

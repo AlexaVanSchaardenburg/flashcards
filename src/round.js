@@ -17,7 +17,7 @@ const takeTurn = (guess, round) => {
     } 
     round.turns++
     round.currentCard = round.deck[round.turns]
-    return `You guessed ${result}`
+    return `${result}`
 };
 
 const calculatePercentCorrect = (round) => {
