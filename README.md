@@ -4,10 +4,14 @@
 ## Demo of Working Application
   ![Flashcards project gif](https://github.com/AlexaVanSchaardenburg/flashcards/assets/125763236/49c9fd07-d6ec-4359-8cfe-e55168beec72)
   Demo of working application in command line
+  
 ## Technologies Used
   Fucntionality was written in JavaScript, testing used the Moach/Chai framework and assertion library. 
 
 ## Install and set up instructions
-  Fork and clone this repo down to your local machine, run `node index.js` to being playing.
+  Fork and clone this repo down to your local machine, `cd` into the directory, run `npm install`, and run `node index.js` to being playing.
+  
+## Goals and Wins
+The goal of this project was to get comforatble writing tests for javascript inorder to test the functionality of the code we were writing. A big win for me during this project was seeing all of my javascript skills come together to quickly and effieciently write code. Additionally, my abilities to effectively psuedocode allowed me to write tests before writing functions follwoing TDD. 
 
   
